@@ -1,0 +1,36 @@
+﻿@page "/"
+@using _4.SemesterProjekt_v3.Blazor.Models
+@inject HttpClient httpClient
+
+<PageTitle>Home</PageTitle>
+
+<div class="rz-my-3 rz-mx-6">
+    <h1>Login</h1>
+</div>
+
+<RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.Center">
+    <RadzenCard class="rz-my-3 rz-mx-3" Style="max-width: 420px; min-width: 300px; max-height: 420px; min-height: 300px">
+        <RadzenStack Orientation="Orientation.Vertical" AlignItems="AlignItems.Center">
+            <RadzenTextBox Placeholder="Username" @bind-Value=@Username class="vw-90 rz-my-2 rz-mx-2" />
+            <RadzenTextBox Placeholder="Password" @bind-Value=@Password class="vw-90 rz-my-2 rz-mx-2" />
+            <RadzenButton Click=@Login Text="Login" ButtonStyle="ButtonStyle.Primary" class="rz-my-2 rz-mx-2" />
+            <RadzenLink Path="/register" Text="register" class="rz-my-2 rz-mx-2" />
+        </RadzenStack>
+    </RadzenCard>
+</RadzenStack>
+
+
+
+@code {
+    private string Username = string.Empty;
+    private string Password = string.Empty;
+
+    private UserAccountModel _user;
+
+    private async Task Login()
+    {
+        _user.Username = Username;
+        _user.Password = Password;
+        await httpClient.PostAsJsonAsync<UserAccountModel>("/Account", _user);
+    }
+}

@@ -1,0 +1,6 @@
+@_4.SemesterProjekt_v3.AuthorService_HostAddress = http://localhost:5281
+
+GET {{_4.SemesterProjekt_v3.AuthorService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

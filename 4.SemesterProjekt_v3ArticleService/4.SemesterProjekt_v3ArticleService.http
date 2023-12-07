@@ -1,0 +1,6 @@
+@_4.SemesterProjekt_v3ArticleService_HostAddress = http://localhost:5288
+
+GET {{_4.SemesterProjekt_v3ArticleService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
