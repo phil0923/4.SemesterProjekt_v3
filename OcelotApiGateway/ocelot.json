@@ -25,7 +25,14 @@
           "Port": 5165
         }
       ],
-      "DownstreamPathTemplate": "/Account"
+      "DownstreamPathTemplate": "/Account",
+      "RateLimitOptions": {
+        "ClientWhiteList": [],
+        "EnableRateLimiting": true,
+        "Period": "60s",
+        "PeriodTimeSpan": 60,
+        "Limit": 1
+      }
     },
 
     //Author

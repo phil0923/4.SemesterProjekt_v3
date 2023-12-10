@@ -4,6 +4,7 @@ using JwtAuthenticationManager;
 using JwtAuthenticationManager.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.RegularExpressions;
 
 namespace AuthenticationWebApi.Controllers
 {
@@ -37,6 +38,11 @@ namespace AuthenticationWebApi.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Regiser(UserAccountDto request)
         {
+            //Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character
+            Regex rx = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$");
+           
+            if (!rx.IsMatch(request.Password)) return BadRequest("Password must be at least 8 characters long and contain both uppercase and lowercase letters. Must contain at least one number an special character.");
+            
             var user = new UserAccount();
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(request.Password);
 

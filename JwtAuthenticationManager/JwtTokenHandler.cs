@@ -17,7 +17,6 @@ namespace JwtAuthenticationManager
             if (string.IsNullOrWhiteSpace(authenticationRequest.Username) || string.IsNullOrWhiteSpace(authenticationRequest.Password)) { return null; }
 
             var userAccount = authenticationRequest;
-            if (userAccount is null) { return null; }
 
             var tokenExpiryTimeStamp = DateTime.Now.AddMinutes(JWT_TOKEN_VALIDITY_MINS);
             var tokenKey = Encoding.UTF8.GetBytes(JWT_SECURITY_KEY);

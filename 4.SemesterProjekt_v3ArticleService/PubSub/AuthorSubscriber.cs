@@ -33,7 +33,7 @@ namespace _4.SemesterProjekt_v3ArticleService.PubSub
                 {
                     if (dbContext.Author.Any(x => x.Id == data["id"].Value<int>()))
                     {
-                        Console.WriteLine("Ignogint old/duplicate entity");
+                        Console.WriteLine("Ignoring old/duplicate entity");
                     }
                     else
                     {

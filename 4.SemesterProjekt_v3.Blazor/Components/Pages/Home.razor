@@ -13,7 +13,8 @@
         <RadzenStack Orientation="Orientation.Vertical" AlignItems="AlignItems.Center">
             <RadzenTextBox Placeholder="Username" @bind-Value=@Username class="vw-90 rz-my-2 rz-mx-2" />
             <RadzenTextBox Placeholder="Password" @bind-Value=@Password class="vw-90 rz-my-2 rz-mx-2" />
-            <RadzenButton Click=@Login Text="Login" ButtonStyle="ButtonStyle.Primary" class="rz-my-2 rz-mx-2" />
+            <RadzenButton Click=@OnClock Text="Login" ButtonStyle="ButtonStyle.Primary" class="rz-my-2 rz-mx-2" />
+            <RadzenTextBox Visible=@visible Placeholder="Hi" class="vw-90 rz-my-2 rz-mx-2" />
             <RadzenLink Path="/register" Text="register" class="rz-my-2 rz-mx-2" />
         </RadzenStack>
     </RadzenCard>
@@ -26,8 +27,14 @@
     private string Password = string.Empty;
 
     private UserAccountModel _user;
+    bool visible;
 
-    private async Task Login()
+    void OnClock()
+    {
+        visible = !visible;
+        StateHasChanged();
+    }
+    async Task Login()
     {
         _user.Username = Username;
         _user.Password = Password;
